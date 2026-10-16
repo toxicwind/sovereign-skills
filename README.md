@@ -1,4 +1,4 @@
-# sovereign-skills
+# estate-scripts-skills
 
 Kimi-style skill definitions and agent orchestration patterns.
 
