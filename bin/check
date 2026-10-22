@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# estate-skills — self-test gate (PASS/FAIL).
+# Verifies the Lens Orchestrator library loads and the lenses dir is discoverable.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+echo "== estate-skills check: start =="
+fail=0
+
+node --check lib/lens-orchestrator.js || { echo "FAIL: lens-orchestrator syntax error"; exit 1; }
+
+set +e
+out="$(node -e 'require("./lib/lens-orchestrator.js"); console.log("orchestrator: OK")' 2>&1)"
+rc=$?
+set -e
+echo "$out"
+[ "$rc" -eq 0 ] || { echo "FAIL: orchestrator load failed"; exit 1; }
+
+[ -d src/_11ty/lenses ] || { echo "WARN: src/_11ty/lenses empty (no lenses yet)"; }
+
+echo "== estate-skills check: PASS =="
+exit 0

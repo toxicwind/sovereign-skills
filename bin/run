@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# estate-skills — primary operation: the Lens Orchestrator (agentic perception
+# layer) that auto-discovers lens_*.js modules from src/_11ty/lenses.
+# Usage: bin/run — prints the discovered lens inventory.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+exec node -e '
+const { LensOrchestrator } = require("./lib/lens-orchestrator.js");
+(async () => {
+  const o = new LensOrchestrator();
+  const lenses = await o.discover();
+  console.log(`lenses discovered: ${lenses.length}`);
+  for (const l of lenses) console.log(`  - ${l.name}`);
+  process.exit(0);
+})().catch(e => { console.error(e); process.exit(1); });
+'
