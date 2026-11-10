@@ -1,0 +1,40 @@
+{
+  "name": "estate-scripts-skills",
+  "version": "0.1.0",
+  "description": "Kimi-style skill definitions and agent orchestration patterns for estate products.",
+  "main": "./src/index.ts",
+  "type": "module",
+  "bin": {
+    "estate-scripts-skills": "./bin/main.ts"
+  },
+  "scripts": {
+    "dev": "bun --hot run src/index.ts",
+    "test": "bun test",
+    "typecheck": "tsgo --noEmit -p tsconfig.json",
+    "lint": "biome check .",
+    "fmt": "biome format --write .",
+    "build": "bun build src/index.ts --target bun --outdir dist"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "bun-types": "latest",
+    "typescript": "^5.4.5",
+    "@biomejs/biome": "^1.8.3"
+  },
+  "files": [
+    "src",
+    "bin",
+    "skills",
+    "dist"
+  ],
+  "keywords": [
+    "ai",
+    "skills",
+    "orchestration",
+    "estate",
+    "agents"
+  ],
+  "author": "",
+  "license": "ISC",
+  "private": true
+}
